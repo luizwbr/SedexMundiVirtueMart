@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension version="2.5" type="plugin" group="vmshipment" method="upgrade">
+    <name>Correios Mundi</name>
+    <creationDate>Fevereiro 2016</creationDate>
+    <author>Luiz Felipe Weber </author>
+    <authorUrl>http://weber.eti.br</authorUrl>
+    <copyright>Copyright (C) 2016. All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
+    <version>1.0.0</version>
+    <description>Plugin Virtuemart Correios Mundi 1.0.0 - VM 3.+ </description>    
+    <files>
+       <filename plugin="correios_mundi">correios_mundi.php</filename>  
+       <folder>images</folder>   
+    </files>
+
+    <media destination="../images/stories/virtuemart/shipment" folder="images">
+        <filename>logo_sedex_mundi.gif</filename>        
+    </media>
+
+    <vmconfig>
+        <fields name="params">
+            <fieldset name="template">
+                <field name="shipment_logos" type="vmfiles" multiple="true" directory="/images/stories/virtuemart/shipment"
+                       hide_none="1" label="Logo"
+                       size="40"
+                       description="Logo método de envio"/>
+            </fieldset>
+            <fieldset name="restrictions">
+                <field name="Servicos_CM" type="list" default="41106" label="Serviço dos Correios">        
+                    <option value="110">(110) Mercadoria Expressa ( EMS )</option>
+                    <option value="128">(128) Mercadoria Econômica</option>
+                    <option value="209">(209) Leve Internacional</option>                    
+                </field>
+
+                <field type="spacer" default="Configuração Exibição" level="level1" />   
+
+                <field name="MostrarPeso_CM" type="list" default="0" label="Mostrar Peso">
+                        <option value="1">Sim</option>
+                        <option value="0">Não</option>
+                </field>
+
+                <field name="MostrarPrazoEntrega_CM" type="list" default="0" label="Mostrar prazo de Entrega">
+                        <option value="1">Sim</option>
+                        <option value="0">Não</option>
+                </field>
+
+                <field type="spacer" default="Configuração Cálculo" level="level1" />	
+
+                <field name="Localidade_CM" type="list" default="0" label="Localidade da postagem">
+                    <option value="C">Capital</option>
+                    <option value="I">Interior</option>
+                </field>
+
+                <field name="Uforigem_CM" type="list" default="0" label="UF Origem">
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="GO">Goiás</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraiba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí­</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                </field>
+
+                <field name="FreteProduto_CM" type="list" default="0" label="Calcular um frete por produto">
+                    <option value="1">Sim</option>
+                    <option value="0">Não</option>
+                </field>
+                
+                <field name="Comprimento_CM" type="text" size="10" default="16" label="Comprimento Médio Pacote (Cm)" description=""/>
+                
+                <field name="Larg_Diam_CM" type="text" size="10" default="11" label="Largura/Diâmetro médio pacotes(Cm)" description=""/>
+                
+                <field name="Altura_CM" type="text" size="10" default="2" label="Altura média pacotes(Cm)" description=""/>
+
+                <field name="Prazo_Extra_CM" type="text" size="10" default="0" label="Prazo Extra Entrega ( Dias )" description=""/>
+                
+                <field name="VolumeProduto_CM" type="list" default="0" label="Utilizar soma do volume do produto ou sempre o maior">
+                    <option value="1">Volume do produto somado</option>
+                    <option value="0">Sempre o maior volume do produto</option>
+                </field>
+
+                <field type="spacer" default="Configuração de faixa de cep" level="level2" />
+                <field name="MensagemErro_CM" type="list" default="0" label="Mostra Mensagens Erro Correios">
+                    <option value="1">Sim</option>
+                    <option value="0">Não</option>
+                </field>
+
+
+                <field type="spacer" default="Outras configurações" level="level4" />        
+                <field name="countries" type="vmcountries"  scope="com_virtuemart" default="" label="Países" description="Por favor, selecione um país. Se nenhum for selecionado esta tarifa valerá para todos os países."/>
+                <field name="weight_start" type="text" size="10" default="" label="Peso Mínimo" description="Por favor, digite um peso mínimo. Se nenhuma informação for digitada, o peso mínimo não será considerado."/>
+                <field name="weight_stop" type="text" size="10" default="" label="Peso Máximo" description="Por favor, digite um peso máximo. Se nenhuma informação for digitada, o peso máximo não será considerado."/>
+                <field name="weight_unit" type="vmweightunit" size="10" default="" label="Unidade de Peso" description="Unidade de Peso para a regra"/>
+                <field name="nbproducts_start" type="text" size="10" default="" label="Número mínimo de Produtos" description="Número mínimo de produtos"/>
+                <field name="nbproducts_stop" type="text" size="10" default="" label="Número máximo de Produtos" description="Número máximo de produtos"/>
+                <field name="orderamount_start" type="text" size="10" default="" label="Valor mínimo de Pedido" description="Valor mínimo de Pedido"/>
+                <field name="orderamount_stop" type="text" size="10" default="" label="Valor máximo de Pedido" description="Valor máximo de Pedido"/> 
+            </fieldset>
+            <fieldset name="fee">
+                <field name="Handling_Fee_CM" type="text" size="10" default="0" label="Taxa de empacotamento e manuseio" description=""/>
+                <field name="Handling_Fee_CM_type" type="radio" default="plus" label='Modo de cobrança Taxa de empacotamento' description="Caso esteja definido como modo valor, o valor da tarifa irá somar ao total do frete, caso contrário, o valor será multiplicado ao valor do frete">
+                    <option value="plus">Valor (+)</option>
+                    <option value="time">Multiplicador (x)</option>
+                </field>
+
+                <field name="tax_id" type="vmtaxes" scope="com_virtuemart"  label="Classe de Taxação" />
+                <field name="free_shipment" type="text" label="Valor mínimo para frete grátis" description="Digite o valor mínimo do pedido para contar como frete grátis" />
+
+                <field name="debug" type="list" default="0" label="Debugar Valores de frete">
+                    <option value="1">Sim</option>
+                    <option value="0">Não</option>
+                </field>
+                <field type="spacer" default="
+                    &lt;div&gt; Licença: &lt;a href=&quot;http://www.gnu.org/licenses/gpl-3.0.html&quot;&gt;GNU/GPL v3&lt;/a&gt; - Desenvolvido por Luiz Weber - &lt;a href=&quot;http://weber.eti.br&quot;&gt;Weber TI&lt;/a&gt;
+                    &lt;/div&gt;    
+                    " level="level4" />
+            </fieldset>
+        </fields>
+    </vmconfig>    
+</extension>
