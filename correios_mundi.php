@@ -550,18 +550,21 @@ class plgVmShipmentCorreios_Mundi extends vmPSPlugin {
             return false;
         }
 
-        $db     = JFactory::getDbo();
-        $sql    = "SELECT country_2_code
-                    FROM `#__virtuemart_countries`
-                    WHERE virtuemart_country_id = ".$address["virtuemart_country_id"];
-        $db->setQuery($sql);
-        $consulta = $db->loadObjectList(); 
+        if (isset($address["virtuemart_country_id"])) {
 
-        $this->Pais_destino = $consulta[0]->country_2_code; // $cart->ST["virtuemart_country_id"];
+	        $db     = JFactory::getDbo();
+	        $sql    = "SELECT country_2_code
+	                    FROM `#__virtuemart_countries`
+	                    WHERE virtuemart_country_id = ".$address["virtuemart_country_id"];
+	        $db->setQuery($sql);
+	        $consulta = $db->loadObjectList(); 
 
-        $view = vRequest::getVar('view');
-        if (!count($cart->products) and $view == 'cart') {            
-            return false;
+	        $this->Pais_destino = $consulta[0]->country_2_code; // $cart->ST["virtuemart_country_id"];
+
+	        $view = vRequest::getVar('view');
+	        if (!count($cart->products) and $view == 'cart') {            
+	            return false;
+	        }
         }
 
         // Verifica se o peso está dentro dos limites
