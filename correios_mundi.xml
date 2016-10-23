@@ -6,8 +6,8 @@
     <authorUrl>http://weber.eti.br</authorUrl>
     <copyright>Copyright (C) 2016. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
-    <version>1.0.0</version>
-    <description>Plugin Virtuemart Correios Mundi 1.0.0 - VM 3.+ </description>    
+    <version>1.0.1</version>
+    <description>Plugin Virtuemart Correios Mundi 1.0.1 - VM 3.+ </description>    
     <files>
        <filename plugin="correios_mundi">correios_mundi.php</filename>  
        <folder>images</folder>   
